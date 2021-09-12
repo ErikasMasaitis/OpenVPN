@@ -1,0 +1,26 @@
+Index: openvpn/Config-openssl.in
+===================================================================
+--- openvpn.orig/Config-openssl.in
++++ openvpn/Config-openssl.in
+@@ -18,7 +18,7 @@ config OPENVPN_openssl_ENABLE_X509_ALT_U
+ 
+ config OPENVPN_openssl_ENABLE_MANAGEMENT
+ 	bool "Enable management server support"
+-	default n
++	default y
+ 
+ #config OPENVPN_openssl_ENABLE_PKCS11
+ #	bool "Enable pkcs11 support"
+Index: openvpn/Makefile
+===================================================================
+--- openvpn.orig/Makefile
++++ openvpn/Makefile
+@@ -75,7 +75,7 @@ define Build/Configure
+ 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_LZO),--enable,--disable)-lzo \
+ 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_LZ4),--enable,--disable)-lz4 \
+ 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_X509_ALT_USERNAME),--enable,--disable)-x509-alt-username \
+-		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_MANAGEMENT),--enable,--disable)-management \
++		--enable-management \
+ 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_FRAGMENT),--enable,--disable)-fragment \
+ 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_MULTIHOME),--enable,--disable)-multihome \
+ 		$(if $(CONFIG_OPENVPN_$(BUILD_VARIANT)_ENABLE_IPROUTE2),--enable,--disable)-iproute2 \
